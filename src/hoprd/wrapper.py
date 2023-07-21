@@ -74,7 +74,7 @@ class HoprdAPI(object):
 
     async def get_all_channels(self, include_closed: bool):
         data = json.dumps({})
-        return await self.call_api(f"/channels?includingClosed=${include_closed}", "GET", bytes(data, "utf-8"))
+        return await self.call_api(f"channels?includingClosed=${include_closed}", "GET", bytes(data, "utf-8"))
 
     async def get_channel_topology(self, full_topology: bool):
         """
@@ -101,12 +101,12 @@ class HoprdAPI(object):
     
     async def get_tickets_in_channel(self, include_closed: bool):
         data = json.dumps({})
-        return await self.call_api(f"/channels?includingClosed=${include_closed}", "GET", bytes(data, "utf-8"))
+        return await self.call_api(f"channels?includingClosed=${include_closed}", "GET", bytes(data, "utf-8"))
 
     async def redeem_tickets_in_channel(self, peer_id):
         """Redeeming tickets can take up to 5 minutes"""
         data = json.dumps({})
-        return await self.call_api(f"/channels/{peer_id}/tickets/redeem", "POST", bytes(data, "utf-8"))
+        return await self.call_api(f"channels/{peer_id}/tickets/redeem", "POST", bytes(data, "utf-8"))
 
     async def redeem_tickets(self):
         """Redeeming tickets can take up to 5 minutes"""
