@@ -91,6 +91,14 @@ class HoprdAPI(object):
         data = json.dumps({})
         return await self.call_api(f"channels?fullTopology={str(full_topology).lower()}", "GET", bytes(data, "utf-8"))
 
+    async def open_channel(self, peer_id, amount):
+        data = json.dumps({"peerId": f"{peer_id}", "amount": f"{amount}"})
+        return await self.call_api("channels", "POST", bytes(data, "utf-8"))
+
+    async def close_channel(self, peer_id, direction):
+        data = json.dumps({})
+        return await self.call_api(f"channels/{peer_id}/{direction}", "DELETE", bytes(data, "utf-8"))
+    
     async def get_tickets_in_channel(self, include_closed: bool):
         data = json.dumps({})
         return await self.call_api(f"/channels?includingClosed=${include_closed}", "GET", bytes(data, "utf-8"))
